@@ -13,6 +13,7 @@ public class User {
     private String name;
     private String passwordHash;
     private String PasswordSalt;
+    private String role = "MEMBER";
 
     public User() {
     }
@@ -64,11 +65,21 @@ public class User {
         PasswordSalt = passwordSalt;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

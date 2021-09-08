@@ -29,7 +29,7 @@ public class BookRepoImpl implements BookRepo{
 
     @Override
     public  Book getBookByTitle(String title){
-        TypedQuery<Book> q = em.createQuery("SELECT b FROM book b WHERE b.title = :title", Book.class);
+        TypedQuery<Book> q = em.createQuery("SELECT b FROM Book b WHERE b.title = :title", Book.class);
         q.setParameter("title", title);
         return q.getSingleResult();
     }

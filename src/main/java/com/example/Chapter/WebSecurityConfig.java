@@ -17,9 +17,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/register").permitAll()
                 .antMatchers("/book").hasRole("MODERATOR")
                 .and()
-                .addFilterBefore(new JwtFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
+                .addFilter(new JwtFilter(authenticationManager()));
     }
 }

@@ -1,14 +1,19 @@
 package com.example.Chapter.service;
 
 
+import com.example.Chapter.DTO.UserLoginDTO;
 import com.example.Chapter.DTO.UserRegisterDTO;
 import com.example.Chapter.entity.User;
 import com.example.Chapter.repo.UserRepo;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -28,6 +33,25 @@ public class UserServiceImpl implements UserService{
         return ur.add(user);
     }
 
+    @Override
+    public String login(UserLoginDTO u) {
+        User user = ur.getByEmail(u.email);
+        if(BCrypt.checkpw(u.password, user.getPasswordHash())){
+            return generateToken(user);
+        }else{
+            return "Email or  password are invalid!";
+        }
+    }
+    private String generateToken(User u){
+        long currentTime = System.currentTimeMillis();
+        JwtBuilder token = Jwts.builder()
+                .setSubject(u.getName())
+                .claim("role", u.getRole())
+                .setIssuedAt(new Date(currentTime))
+                .setExpiration(new Date(currentTime + 900000))
+                .signWith(SignatureAlgorithm.HS256, "123veryH@rd2Gue$$321");
+        return token.compact();
+    }
 
 
 }
