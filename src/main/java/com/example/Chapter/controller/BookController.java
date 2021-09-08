@@ -30,7 +30,7 @@ public class BookController {
     public Book saveBook(@RequestBody Book b){
         return bs.saveBook(b);
     }
-    @PutMapping 
+    @PutMapping
     public Book updateBook(@RequestBody Book b){
         return bs.updateBook(b);
     }

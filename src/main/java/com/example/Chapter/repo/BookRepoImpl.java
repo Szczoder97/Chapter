@@ -1,10 +1,6 @@
 package com.example.Chapter.repo;
 
 import com.example.Chapter.entity.Book;
-import com.example.Chapter.service.BookServiceImpl;
-import org.hibernate.Session;
-
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
