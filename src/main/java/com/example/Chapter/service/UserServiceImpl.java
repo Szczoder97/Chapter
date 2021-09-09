@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService{
         JwtBuilder token = Jwts.builder()
                 .setSubject(u.getName())
                 .claim("role", u.getRole())
+                .claim("id", u.getId())
                 .setIssuedAt(new Date(currentTime))
                 .setExpiration(new Date(currentTime + 900000))
                 .signWith(SignatureAlgorithm.HS256, "123veryH@rd2Gue$$321");
