@@ -1,5 +1,6 @@
 package com.example.Chapter.controller;
 
+import com.example.Chapter.DTO.GetUserDTO;
 import com.example.Chapter.DTO.UserLoginDTO;
 import com.example.Chapter.DTO.UserRegisterDTO;
 import com.example.Chapter.entity.User;
@@ -19,5 +20,9 @@ public class UserController {
     @PostMapping("/login")
     public String login(@RequestBody UserLoginDTO u){
         return us.login(u);
+    }
+    @GetMapping("/{email}")
+    public GetUserDTO getByEmail(@PathVariable String email){
+        return us.getByEmail(email);
     }
 }

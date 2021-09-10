@@ -1,8 +1,7 @@
 package com.example.Chapter.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Book {
@@ -11,6 +10,10 @@ public class Book {
     private Long id;
     private String title;
     private String author;
+    @OneToOne
+    private Room room;
+    @ManyToMany
+    private List<User> members;
 
     public Book() {
     }

@@ -1,8 +1,7 @@
 package com.example.Chapter.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,6 +13,8 @@ public class User {
     private String passwordHash;
     private String PasswordSalt;
     private String role = "MEMBER";
+    @ManyToMany
+    private List<Room> rooms;
 
     public User() {
     }

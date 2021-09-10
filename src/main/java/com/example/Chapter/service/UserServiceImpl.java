@@ -1,6 +1,7 @@
 package com.example.Chapter.service;
 
 
+import com.example.Chapter.DTO.GetUserDTO;
 import com.example.Chapter.DTO.UserLoginDTO;
 import com.example.Chapter.DTO.UserRegisterDTO;
 import com.example.Chapter.entity.User;
@@ -42,6 +43,22 @@ public class UserServiceImpl implements UserService{
             return "Email or  password are invalid!";
         }
     }
+
+    @Override
+    public GetUserDTO getByEmail(String email) {
+        GetUserDTO u = new GetUserDTO();
+        User user = ur.getByEmail(email);
+        u.id = user.getId();
+        u.name = user.getName();
+        u.email = user.getEmail();
+        return u;
+    }
+
+    @Override
+    public GetUserDTO getById(Long id) {
+        return null;
+    }
+
     private String generateToken(User u){
         long currentTime = System.currentTimeMillis();
         JwtBuilder token = Jwts.builder()
