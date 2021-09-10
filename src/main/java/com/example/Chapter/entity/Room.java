@@ -15,6 +15,8 @@ public class Room {
     @ManyToMany
     @JoinTable(name = "ROOMS_MEMBERS")
     private List<User> members;
+    @OneToMany(mappedBy = "id")
+    private List<Topic> topics;
 
     public Room() {
     }
@@ -47,5 +49,8 @@ public class Room {
     }
     public void removeMember(User u){
         members.remove(u);
+    }
+    public void addTopic(Topic t){
+        topics.add(t);
     }
 }

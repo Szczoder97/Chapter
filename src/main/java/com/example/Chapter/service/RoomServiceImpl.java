@@ -2,6 +2,7 @@ package com.example.Chapter.service;
 
 import com.example.Chapter.DTO.AddMemberToRoomDTO;
 import com.example.Chapter.DTO.AddRoomDTO;
+import com.example.Chapter.DTO.CreateTopicDTO;
 import com.example.Chapter.entity.Room;
 import com.example.Chapter.repo.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,15 @@ public class RoomServiceImpl implements RoomService{
     @Override
     public void addMember(AddMemberToRoomDTO m) {
         rr.addMember(m);
+    }
+
+    @Override
+    public void addTopic(CreateTopicDTO t) {
+        rr.addTopic(t);
+    }
+
+    @Override
+    public Room getRoom(Long id) {
+        return rr.getRoom(id);
     }
 }

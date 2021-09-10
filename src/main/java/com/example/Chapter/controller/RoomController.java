@@ -2,12 +2,11 @@ package com.example.Chapter.controller;
 
 import com.example.Chapter.DTO.AddMemberToRoomDTO;
 import com.example.Chapter.DTO.AddRoomDTO;
+import com.example.Chapter.DTO.CreateTopicDTO;
+import com.example.Chapter.entity.Room;
 import com.example.Chapter.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rooms")
@@ -23,4 +22,15 @@ public class RoomController {
     public void addMember(@RequestBody AddMemberToRoomDTO m){
         rs.addMember(m);
     }
+    @GetMapping("/{id}")
+    public Room getRoom(@PathVariable Long id){
+        return rs.getRoom(id);
+    }
+    @PostMapping("/{id}")
+    public void createTopic(@RequestBody CreateTopicDTO t, @PathVariable Long id){
+        Room r = rs.getRoom(id);
+        t.room = r;
+        rs.addTopic(t);
+    }
+
 }

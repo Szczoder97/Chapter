@@ -12,8 +12,6 @@ public class Book {
     private String author;
     @OneToOne
     private Room room;
-    @ManyToMany
-    private List<User> members;
 
     public Book() {
     }

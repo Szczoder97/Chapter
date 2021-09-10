@@ -2,7 +2,9 @@ package com.example.Chapter.repo;
 
 import com.example.Chapter.DTO.AddMemberToRoomDTO;
 import com.example.Chapter.DTO.AddRoomDTO;
+import com.example.Chapter.DTO.CreateTopicDTO;
 import com.example.Chapter.entity.Room;
+import com.example.Chapter.entity.Topic;
 import com.example.Chapter.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,5 +35,20 @@ public class RoomRepoImpl implements RoomRepo{
         r.addMember(u);
         em.persist(r);
 
+    }
+
+    @Override
+    public void addTopic(CreateTopicDTO t) {
+        Room room = t.room;
+        Topic topic = new Topic();
+        topic.setRoom(room);
+        topic.setTitle(t.title);
+        topic.setText(t.text);
+        em.persist(topic);
+    }
+
+    @Override
+    public Room getRoom(Long id) {
+        return em.find(Room.class, id);
     }
 }
